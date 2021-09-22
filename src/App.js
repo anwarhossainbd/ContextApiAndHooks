@@ -1,14 +1,19 @@
 import React from "react";
 import './App.css';
-import Languages from "./comonents/Languages"
+import ShopContextProvider from "./Contexts/ShopContext";
+import ShowProducts from "./comonents/ShowProducts";
 
 import "bootswatch/dist/materia/bootstrap.min.css";
+import Nav from "./comonents/Nav";
 
 function App() {
   return (
     <div className="container mt-5">
 
-      <Languages />
+        <ShopContextProvider>
+            <Nav />
+            <ShowProducts />
+        </ShopContextProvider>
 
     </div>
   );

@@ -1,20 +1,23 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState,useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import InputHook from "./InputHook";
 
 const Languages = () => {
 
     const [ComputerLanguages,setComputerLanguages]=useState([
-        {id:1 ,name:"PHP"},
-        {id:2 ,name:"NodeJs"},
-        {id:3 ,name:"Python"},
-        {id:4 ,name:"C++"}
+        {id:1 ,name:"PHP",Email:"Php@gmail.com"},
+        {id:2 ,name:"NodeJs",Email:"NodeJs@gmail.com"},
+        {id:3 ,name:"Python",Email:"Python@gmail.com"},
+        {id:4 ,name:"C++",Email:"C++@gmail.com"}
     ]);
 
 
     // const [name,setName]=useState("");
 
-     const[name,setName,clear]=InputHook("");
+    const[name,setname,clearName]=InputHook("");
+    const[email,setEmail,clearEmail]=InputHook("");
+    const [count,setCount]=useState(0);
+
 
     // const inputHandle=(event)=>{
     //    setName(event.target.value) ;
@@ -23,15 +26,22 @@ const Languages = () => {
 
     const addLanguage = (event) => {
         event.preventDefault() ;
-        setComputerLanguages([...ComputerLanguages,  {id:uuidv4() ,name:name}]) ;
-        clear("")
+        setComputerLanguages([...ComputerLanguages,  {id:uuidv4() ,name:name,Email:email}]) ;
+        clearName("")
+        clearEmail("")
     }
+
+    useEffect(()=>{
+        console.log("Use Effect Method Run !")
+    },[count])
 
 
 
     return (
 
         <Fragment>
+
+            <h1>{count}</h1>
 
             <table className="table">
                 <thead>
@@ -45,6 +55,7 @@ const Languages = () => {
                         <tr key={language.id}>
                             <td>{language.id}</td>
                             <td>{language.name}</td>
+                            <td>{language.Email}</td>
                         </tr>
                     ))
                 }
@@ -55,13 +66,21 @@ const Languages = () => {
             <form onSubmit={addLanguage}>
 
                 <div className="form-group">
-                    <input type="text" className="form-control" value={name} onChange={setName} placeholder="Add Languages.."/>
+                    <input type="text" className="form-control" value={name} onChange={setname} placeholder="Add Languages.."/>
+                </div> <br />
+
+                <div className="form-group">
+                    <input type="email" className="form-control" value={email} onChange={setEmail} placeholder="Add Emails.."/>
                 </div> <br />
 
                 <div className="form-group">
                     <input type="submit"  className="btn btn-primary" value="Add Language" />
                 </div>
-            </form>
+            </form> <br/>
+
+            <div className="form-group">
+                <input type="submit" value="Count" className="btn btn-info" onClick={()=>setCount(count+1)}/>
+            </div>
 
 
 
