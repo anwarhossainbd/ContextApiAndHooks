@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component,useContext} from 'react';
 import {ShopContext} from "../Contexts/ShopContext";
 
-class Nav extends Component {
-    static contextType =ShopContext ;
-    render() {
-        const{products}=this.context ;
+const  Nav =()=> {
+    //static contextType =ShopContext ;
+    const MyData =useContext(ShopContext)
+
+        const{products}=MyData ;
         return (
             <div>
 
@@ -12,7 +13,7 @@ class Nav extends Component {
                 
             </div>
         );
-    }
+
 }
 
 export default Nav;

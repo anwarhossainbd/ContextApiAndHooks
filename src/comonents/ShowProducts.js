@@ -1,9 +1,14 @@
 import React, {useContext} from 'react';
-import {ShopContext} from "../Contexts/ShopContext"
+import {ShopContext} from "../Contexts/ShopContext";
+import {ThemeContext} from "../Contexts/ThemeContext";
 
 const ShowProducts =()=> {
 
     const myData =useContext(ShopContext);
+    const themeData =useContext(ThemeContext)
+
+    console.log(themeData);
+
 
     const {products} = myData ;
                         return(
